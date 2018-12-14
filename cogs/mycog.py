@@ -31,9 +31,8 @@ class Mycog:
         response = requests.get("https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations", headers={"X-Riot-Token": "RGAPI-023389fb-6947-4684-ab86-0259ae9cbaf6"})
         data = response.json()
         varid = data["freeChampionIds"]
-        for v in varid
-            await self.bot.say(v)
-        #await self.bot.say(varid)
+        lengte = len(varid)
+        await self.bot.say(varid[0])
     
     @commands.command()
     async def lol(self, naam):
