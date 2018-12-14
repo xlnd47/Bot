@@ -32,7 +32,9 @@ class Mycog:
         data = response.json()
         varid = data["freeChampionIds"]
         lengte = len(varid)
-        await self.bot.say(varid[0])
+        for x in varid:
+            await self.bot.say(x)
+        #await self.bot.say(data)
     
     @commands.command()
     async def lol(self, naam):
