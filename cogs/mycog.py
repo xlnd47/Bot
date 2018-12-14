@@ -36,8 +36,27 @@ class Mycog:
 
         #Your code will go here
         response = requests.get("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + naam , headers={"X-Riot-Token": "RGAPI-023389fb-6947-4684-ab86-0259ae9cbaf6"})
-        await self.bot.say(response.content)
+        #await self.bot.say(response.content)
+        data = response.json()
+        varid = data["id"]
+        await self.bot.say(varid)
+        response2 = requests.get("https://euw1.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/" + varid , headers={"X-Riot-Token": "RGAPI-023389fb-6947-4684-ab86-0259ae9cbaf6"})
+        #data2 = response2.json()
+        #varpar = data2["participants"]
+        #await self.bot.say(response2.content)
     
+    @commands.command()
+    async def id(self, naam):
+        """Champion rotation LoL"""
+
+        #Your code will go here
+        response = requests.get("https://euw1.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/" + naam , headers={"X-Riot-Token": "RGAPI-023389fb-6947-4684-ab86-0259ae9cbaf6"})
+        data = response.json()
+        participants = data["participants"]
+        for p in participants
+            name = participants["summonerName"]
+            await self.bot.say(name)
+        await self.bot.say(response.content)
 
 def setup(bot):
     bot.add_cog(Mycog(bot))
