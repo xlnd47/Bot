@@ -23,12 +23,20 @@ class Mycog:
         await self.bot.say("ONE PUNCH! And " + user.mention + " is out! ლ(ಠ益ಠლ)")
 
     @commands.command()
-    async def champrot(self, user : discord.Member):
+    async def champrot(self):
         """Champion rotation LoL"""
 
         #Your code will go here
-        response = requests.get("https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations")
-        await self.bot.say(response.status_code)
+        response = requests.get("https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations", headers={"X-Riot-Token": "RGAPI-023389fb-6947-4684-ab86-0259ae9cbaf6"})
+        await self.bot.say(response.content)
+    
+    @commands.command()
+    async def lol(self, naam):
+        """Champion rotation LoL"""
+
+        #Your code will go here
+        response = requests.get("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + naam , headers={"X-Riot-Token": "RGAPI-023389fb-6947-4684-ab86-0259ae9cbaf6"})
+        await self.bot.say(response.content)
     
 
 def setup(bot):
